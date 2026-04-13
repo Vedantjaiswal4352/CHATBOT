@@ -7,15 +7,13 @@ from langgraph.graph.message import add_messages
 from dotenv import load_dotenv
 load_dotenv()
 
-llm_openai = HuggingFaceEndpoint(
-    repo_id="openai/gpt-oss-120b",   # switch to the new model
+llm_meta = HuggingFaceEndpoint(
+    repo_id="meta-llama/Meta-Llama-3.1-8B-Instruct",   
     task="text-generation",
-    max_new_tokens=1000,#256,              # increase token output
-    do_sample=False,
-    repetition_penalty=1.03,
-    provider="auto",                 # let HF choose best provider
+    max_new_tokens=1000,#256,              
+    provider="auto",                 
 )
-model = ChatHuggingFace(llm=llm_openai)
+model = ChatHuggingFace(llm=llm_meta)
 
 class ChatState(TypedDict):
     messages : Annotated[list[BaseMessage],add_messages]
