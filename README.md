@@ -1,3 +1,7 @@
+<img width="1351" height="498" alt="image_c8e82d85" src="https://github.com/user-attachments/assets/2929fc2d-bdee-4967-a51c-fffe8c8232da" />
+
+
+
 # 🤖 MULTI-BOT: Multi-Tool RAG Chatbot
 
 An advanced, stateful Conversational AI application that implements a Multi-Tool Retrieval-Augmented Generation (RAG) agent. The system features long-term chat persistence, asynchronous document processing, real-time tool execution notifications, and live response streaming.
