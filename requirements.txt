@@ -1,0 +1,15 @@
+# Framworks
+langchain
+langchain-core
+langchain-huggingface
+langchain-community
+langgraph
+transformers 
+huggingface-hub
+pandas
+numpy
+streamlit
+python-dotenv
+beautifulsoup4
+requests
+uuid
