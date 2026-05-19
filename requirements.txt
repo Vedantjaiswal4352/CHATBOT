@@ -12,3 +12,8 @@ streamlit
 python-dotenv
 beautifulsoup4
 requests
+sentence-transformers
+faiss-cpu==1.8.0
+pypdf
+pypdf
+duckduckgo-search
