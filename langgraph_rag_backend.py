@@ -21,6 +21,14 @@ import random
 import requests
 import os
 import tempfile
+from langfuse import get_client
+from langfuse.langchain import CallbackHandler
+import json
+# Initialize Langfuse client
+langfuse = get_client()
+
+# Initialize Langfuse CallbackHandler for Langchain (tracing)
+langfuse_handler = CallbackHandler()
 av_api_key = os.getenv("ALPHA_VANTAGE_API_KEY")
 openweather_api_key = os.getenv("OPENWEATHERMAP_API_KEY")
 ####################################################################################
@@ -90,7 +98,14 @@ def ingest_pdf(file_bytes, thread_id: str, filename:Optional[str] = None)-> dict
 ####################################################################################
                                 # TOOLS
 ####################################################################################
-search_tool = DuckDuckGoSearchRun(region='us-en')
+ddg_sr = DuckDuckGoSearchRun(region='us-en')
+@tool
+def search_tool(web_query : str)->dict:
+    """
+    Perform a web search on the user question/query
+    """
+    web_search_result = ddg_sr.run(web_query)
+    return json.dumps({"web_search_result": web_search_result})
 
 @tool
 def calculator(f_num:float,s_num:float,operation:str)-> dict:

@@ -3,6 +3,14 @@ from langgraph_rag_backend import chatbot, retrieve_all_threads,delete_thread,in
 from langchain_core.messages import HumanMessage,AIMessage,ToolMessage
 import uuid
 import time
+from langfuse import get_client
+from langfuse.langchain import CallbackHandler
+
+# Initialize Langfuse client
+langfuse = get_client()
+
+# Initialize Langfuse CallbackHandler for Langchain (tracing)
+langfuse_handler = CallbackHandler()
 ################################################## Utility Function #####################################
 
 def generate_thread_id():
@@ -130,7 +138,8 @@ if user_input:
         'metadata':{
             'thread_id':thread_key
         },
-        'run_name':'chat_run'
+        'run_name':'chat_run',
+        "callbacks": [langfuse_handler]
     }
     
     with st.chat_message('ai'):
